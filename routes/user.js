@@ -274,3 +274,7 @@ exports.reset=function(req,res){
       res.render('passwordRecovery.ejs');
    }
 };
+//------------------------Cart-----------------
+exports.call_cart = function(req,res){
+   res.render('user_cart.ejs');
+}

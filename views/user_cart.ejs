@@ -37,6 +37,16 @@
 
     function showCart(){
         JSON.parse(localStorage.cart);
+
+        for (var i in cart) {
+                var item = cart[i];
+                var row = "<tr><td>" + item.Product + "</td><td>" +
+                             item.Price + "</td><td>" + item.Qty + "</td><td>"
+                             + item.Qty * item.Price + "</td><td>"
+                             + "<button onclick='deleteItem(" + i + ")'>Delete</button></td></tr>";
+                $("#cartBody").append(row);
+            }
+            
     }
 </script>
 
@@ -47,46 +57,7 @@
             <tbody id="cartBody">
 
             </tbody>
-
-   <% if (items.length > 0) {%>
-  <div class="row">
-      <% items.forEach((item, index) => { %>
-
-
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-          <div class="tile">
-              <div class="wrapper">
-                  <div class="cardtop" id="name"><%= item.Food_Name %></div>
-                  
-                  <div class="banner-img img">
-                      <img src="/assets/img/<%= item.Image %>" alt="" >
-                  </div>
-
-
-                  <div class="dates">
-
-                      <div>
-                          <strong>Details:</strong> <%= item.Details %>
-                      </div>
-                      <div>
-                          <strong>Price:</strong> <%= item.Price %>৳
-                      </div>
-                      <div>
-                          <strong>Available for <%= item.Catagory_Name %></strong> <%= item.Availability %>
-                      </div>
-                  </div>
-
-                     <a id="btnAdd" onclick="addToCart('<%=item.Food_ID%>', '<%= item.Food_Name %>', '<%= item.Price %>', '1')" class="btn btn-primary">Order Now</a>
-                  <br><br>
-              </div>
-          </div> 
-      </div>
-      
-      <% }); %>
-  </div>
-<% } else { %>
-  <p class="text-center">No items found.</p>
-<% } %>
+            <button onclick="showCart()">show</button>
  </div>
 </div>
  <br><br><br><br><br><br>

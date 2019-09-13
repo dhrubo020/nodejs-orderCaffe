@@ -55,6 +55,7 @@ app.use(function(req, res, next){
 app.get('/', user.login);
 app.get('/index', routes.call_index);
 //---------------user----------------------
+app.get('/cart', user.call_cart);
 
 app.get('/login', user.login);//call for login page
 app.get('/passwordRecovery', user.passwordRecovery);
