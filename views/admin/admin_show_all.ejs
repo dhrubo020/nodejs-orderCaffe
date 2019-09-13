@@ -1,0 +1,50 @@
+<%- include admin_header %>
+<body>
+        <h1>Item List</h1>
+        <div class="table-responsive" style="margin-bottom: 6%">
+                <table class="table  thead-dark">
+                    <tr style="background-color: gray; color:white; font-size: 150%">
+                        <td>Photo</td>
+                        <td>Items</td>
+                        <td>Catagory</td>
+                        <td>Details</td>
+                        <td>Price</td>
+                        <td>Availability</td>
+                        <td> Edit </td>
+                    </tr>
+                    <% if (rows.length > 0) {%>
+                        <div class="row">
+                            <% rows.forEach((row, index) => { %>
+                                <tr>
+                                <td>
+                                    <img src="/assets/img/<%= row.Image %>" alt="" class="" style="height:37px; width: 50px">
+                                </td>
+                                <td>
+                                    <%= row.Food_Name %>
+                                </td>
+                                <td>
+                                    <%= row.Catagory_Name %>
+                                </td>
+                                <td>
+                                    <%= row.Details %>
+                                </td>
+                                <td>
+                                    <%= row.Price %>
+                                </td>
+                                <td>
+                                    <%= row.Availability %>
+                                </td>
+                                <td>
+                                       <a href="/admin/edit_items/<%= row.Food_ID%>"  class="btn btn-sm btn-success">Edit</a> 
+                                </td>
+
+                                </tr>
+                                
+                                <% }); }%>
+                        
+                </table>
+            </div>
+        </form>  
+    </body>
+
+<%- include admin_foot %>

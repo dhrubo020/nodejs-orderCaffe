@@ -1,0 +1,75 @@
+<%- include admin_header %>
+<body>
+        <h1></h1>
+        <div class="table-responsive" style="margin-bottom: 6%">
+        <form class="form-horizontal" name="form1" method="POST" action="/admin/update_items/<%= row.Food_ID %>">
+            
+        <div class="table-responsive" style="margin-bottom: 6%">
+                <table class="table  thead-dark">
+                    <tr>
+                        <td>Photo</td>
+                        <td>Name</td>
+                        <td>Catagory</td>
+                        <td>Details</td>
+                        <td>Price</td>
+                        <td>Availability</td>
+                        <td> Update </td>
+                        <td> Change Photo </td>
+                        <td> Delete </td>
+                    </tr>
+                    <% if (row) {%>
+                        <div class="row">
+                                <tr>
+                                <td>
+                                    <img src="/assets/img/<%= row.Image %>" alt="" class="rounded-circle" style="height:37px; width: 37px">
+                                </td>
+                                <td>
+                                    <input type="text" name="name" value="<%= row.Food_Name %>" required>
+                                </td>
+                                <td>
+                                    <select name="catagory" required>
+                                    <option value="<%= row.Catagory_Name %>"><%= row.Catagory_Name %></option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Others">Fastfood</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <textarea type="text" name="details" required><%= row.Details %></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="price" value="<%= row.Price %>" required>
+                                </td>
+                                <td>
+                                    <select id="" name="availability" class="form-control" required>
+                                            <option value="<%= row.Availability %>" ><%= row.Availability %></option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                </td>
+                                <td>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                </td>
+                                </tr>
+                                
+                                <%}%>
+                        
+                </table>
+            </div>
+        </form>  
+    </div>
+
+<div ">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/change_photo/<%= row.Food_ID %>">
+            <input type="hidden" name="name" value="<%= row.Food_Name %>" required>
+           <p>Change Photo:</p>
+                  <input type="file" name="image" id="player-img" class="" required>
+          <br>
+          <button type="submit" class="btn btn-primary ">Submit</button>
+      </form>
+
+</div>
+    </body>
+
+<%- include admin_foot %>

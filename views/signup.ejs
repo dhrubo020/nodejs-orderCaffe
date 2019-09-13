@@ -1,0 +1,170 @@
+<%- include partials/head %>
+<div class="container">
+<div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p class="text-center">Get started with your free account</p>
+            <p>
+                <a href="#" class="btn btn-block btn-facebook" style="background-color: #405D9D; color: #fff;"> 
+                    <i class="fab fa-facebook-f"></i> Signup via facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p>
+<form class="form-horizontal" role="form" onSubmit= "return checkPassword(this)" method="post" action="/signup" >
+                            <% if (message.length > 0) { %>
+                                        <div class="alert alert-success col-sm-12"><%= message %></div>
+                            <% } %>
+                            <div id="signupalert" style="display:none" class="alert alert-danger">
+                                <p>Error:</p>
+                                <span></span>
+                            </div>
+                             <!--  full name -->   
+                             <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                     </div>
+                                    <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+                                </div>
+                            
+                             <!-- Profession -->
+                             <div class="form-group input-group">
+                             <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <select class="form-control" name="profession" required>
+                                        <option selected=""> Select job type</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="Employee">Employee</option>
+                                </select>
+                            </div>
+                             <!--  Department --> 
+                             <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                     </div>
+                                    <select id="" class="form-control" name="department" required>
+                                        <option selected>Department Name</option>
+                                        <option value="Computer Science & Engineering">Computer
+                                            Science & Engineering</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Geology and Mining">Geology and Mining</option>
+                                        <option value="Soil & Environmental Science">Soil &
+                                            Environmental Science</option>
+                                        <option value="Botany">Botany</option>
+                                        <option value="Coastal Studies & Disaster Management">Coastal
+                                            Studies & Disaster Management</option>
+                                        <option value="Biochemistry & Biotechnology">Biochemistry
+                                            & Biotechnology</option>
+                                        <option value="Management Studies">Management Studies</option>
+                                        <option value="Accounting & Information System">Accounting
+                                            & Information System</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Finance & Banking">Finance & Banking</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="Political Science">Political Science</option>
+                                        <option value="Sociology">Sociology</option>
+                                        <option value="Public Administration">Public
+                                            Administration</option>
+                                        <option value="Bangla">Bangla</option>
+                                        <option value="English">English</option>
+                                        <option value="Philosophy">Philosophy</option>
+                                        <option value="Mass Communication & Journalism">Mass
+                                            Communication & Journalism</option>
+                                        <option value="History & Civilization">History &
+                                            Civilization</option>
+                                        <option value="Law">Law</option>
+        
+                                    </select>
+                            </div>
+                             <!--  location --> 
+                             <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                     </div>
+                                <input id="login-password" type="text" class="form-control" name="address" placeholder="Working place" >
+                            </div>
+                            <!--  Flooooor --> 
+                            <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                     </div>
+                                          <select class="form-control" name="floor" id="" required>
+                                            <option value="ground">Select floor</option>
+                                            <option value="ground">Ground floor</option>
+                                            <option value="1st">1st floor</option>
+                                            <option value="2nd">2nd floor</option>
+                                            <option value="3rd">3rd floor</option>
+                                            <option value="4th">4th floor</option>
+                                            <option value="5th">5th floor</option>
+                                            <option value="6th">6th floor</option>
+                                            <option value="7th">7th floor</option>
+                                            
+                                          </select>
+                            </div> 
+                             <!--  Email -->
+                             <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                     </div>
+                                    <input id="" type="text" class="form-control" name="email" value="" placeholder="email" required>                                       
+                            </div>
+                            <!--  phone -->
+                            <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                    </div>
+                                    <select class="custom-select" style="max-width: 120px;">
+                                        <option selected="">+88</option>
+                                    </select>
+                                    <input id="" type="text" class="form-control" name="phone" value="" placeholder="phone" required>                                       
+                                </div>
+                               <!-- password 1 -->    
+                               <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                            <input id="login-password" type="password" class="form-control" name="password1" placeholder="Password" required>
+                                </div>
+                                 <!-- password 2 -->   
+                                 <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                        </div>
+                                    <input id="login-password" type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
+                                </div>
+
+                                <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                    </div> <!-- form-group// -->      
+                                    <p class="text-center">Have an account? <a href="/login">Log In</a> </p>  
+                            
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+                
+                </div> 
+                <!--container end.//-->
+                
+ <br><br><br><br><br><br> <br><br>
+    <script> 
+            function checkPassword(form) { 
+                password1 = form.password1.value; 
+                password2 = form.password2.value; 
+        
+                if (password1 != password2) { 
+                    alert ("\nPassword did not match: Please try again...") 
+                    return false; 
+                } 
+                else{ 
+                    return true; 
+                } 
+            } 
+        </script> 
+</body>
+</html>
+
+<%- include partials/foot %>

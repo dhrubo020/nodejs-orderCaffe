@@ -1,0 +1,52 @@
+
+<%- include admin_header %>
+<div class="container">
+        <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                                                       
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/add_items">
+            
+              <input type="text" class="form-control" name="fname" id="" placeholder="Food name" required>
+                
+            <br>
+            <input type="text" class="form-control" name="price" id="" placeholder="Price" required>
+                
+            <br>
+                    <label>Choose Catagory</label>
+                    <select id="" name="catagory" class="form-control" required>
+                        <option selected ></option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Drinks">Drinks</option>
+                        <option value="Others">Fastfood</option>
+                    </select>
+               
+            <br>
+           
+                    <textarea type="text" class="form-control" name="details" id="" placeholder="Add details about the item." required></textarea>
+                
+            <br>
+                    <label>Available?</label>
+                    <select id="" name="availability" class="form-control" required>
+                        <option selected ></option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                
+            <br>
+                    <label for="player-img"><b>Upload Image</b></label><br>
+                    <input type="file" name="image" id="player-img" class="" required>
+                
+            <br>
+            <button type="submit" class="btn btn-primary float-right">Add</button>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+</body>
+</html>
+<%- include admin_foot %>

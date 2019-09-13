@@ -1,0 +1,58 @@
+
+<%- include partials/head %>
+
+
+<div class="container">
+        <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Login</h4>
+                    <p>
+                        <a href="#" class="btn btn-block btn-facebook" style="background-color: #405D9D; color: #fff;"> 
+                            <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;&nbsp; Login via facebook</a>
+                    </p>
+                    <p class="divider-text">OR</p>
+
+                 <div class="form-group input-group">
+                <% if (message.length > 0) { %>
+                  <div class="alert alert-danger col-sm-12"><%= message %></div>
+                <% } %>
+                 </div>
+
+                <form  class="form-horizontal" role="form" method="post" action="/login">
+                           
+                    <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                             </div>
+                        <input id="" type="text" class="form-control" name="email" value="" placeholder="Email/Phone" required>                                       
+                    </div>
+                       
+                    <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" required>
+                            </div>
+                            
+                            <div class="col-md-12" >
+                                    <a href="/passwordRecovery">Forgot password?</a>
+                                </div>
+                    <br><br>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                                </div> <!-- form-group// -->      
+                                <p class="text-center">Don't have an account? <a href="/signup">Signup</a> </p>  
+                        
+                    </form>
+
+            </article>
+        </div> <!-- card.// -->
+        
+        </div> 
+        <!--container end.//-->
+        
+<br><br><br><br><br><br> <br><br>
+
+</body>
+</html>
+<%- include partials/foot %>

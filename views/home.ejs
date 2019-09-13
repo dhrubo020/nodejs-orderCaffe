@@ -1,0 +1,115 @@
+
+<%- include partials/head.ejs %>
+<script>
+    var cart = [];
+    $(function () {
+        if (localStorage.cart)
+        {
+            cart = JSON.parse(localStorage.cart);
+            showCart();
+        }
+    });
+
+    function addToCart(item) {
+        //var price = $("#product").val();
+        //var name = $("#products option:selected").text();
+        var qty = $("#id").val();
+        console.log(qty);
+        // update qty if product is already present
+        for (var i in cart) {
+            if(cart[i].Product == name)
+            {
+                cart[i].Qty = qty;
+                showCart();
+                saveCart();
+                return;
+            }
+        }
+        // create JavaScript Object
+        var item = { Qty: qty }; 
+        cart.push(item);
+        saveCart();
+        showCart();
+    }
+
+    function deleteItem(index){
+        cart.splice(index,1); // delete item at index
+        showCart();
+        saveCart();
+    }
+
+    function saveCart() {
+        if ( window.localStorage)
+        {
+            localStorage.cart = JSON.stringify(cart);
+        }
+    }
+
+    function showCart() {
+       /* if (cart.length == 0) {
+            $("#cart").css("visibility", "hidden");
+            return;
+        }
+        */
+        $("#cart").css("visibility", "visible");
+        $("#cartBody").empty();
+        for (var i in cart) {
+            var item = cart[i];
+            var row = "<tr><td>" + item.Product + "</td><td>" +
+                         item.Price + "</td><td>" + item.Qty + "</td><td>"
+                         + item.Qty * item.Price + "</td><td>"
+                         + "<button onclick='deleteItem(" + i + ")'>Delete</button></td></tr>";
+            $("#cartBody").append(row);
+        }
+    }
+</script>
+<tbody id="cartBody">
+
+</tbody>
+
+<div class="container">
+        <div class="card-body bg-light" >
+
+   <% if (items.length > 0) {%>
+  <div class="row">
+      <% items.forEach((item, index) => { %>
+
+
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="tile">
+              <div class="wrapper">
+                  <div class="cardtop" id="name"><%= item.Food_Name %></div>
+                    <input type="" id="id" value="<%= item.Food_ID %>">
+                  <div class="banner-img img">
+                      <img src="/assets/img/<%= item.Image %>" alt="" >
+                  </div>
+
+
+                  <div class="dates">
+
+                      <div>
+                          <strong>Details:</strong> <%= item.Details %>
+                      </div>
+                      <div>
+                          <strong>Price:</strong> <%= item.Price %>৳
+                      </div>
+                      <div>
+                          <strong>Available for <%= item.Catagory_Name %></strong> <%= item.Availability %>
+                      </div>
+                  </div>
+
+                     <a id="btnAdd" onclick="addToCart('<%=item.Food_ID%>')" class="btn btn-primary">Order Now</a>
+                  <br><br>
+              </div>
+          </div> 
+      </div>
+      
+      <% }); %>
+  </div>
+<% } else { %>
+  <p class="text-center">No items found.</p>
+<% } %>
+ </div>
+</div>
+ <br><br><br><br><br><br>
+ <%- include partials/foot %>

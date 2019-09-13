@@ -1,0 +1,69 @@
+<%- include admin_header %>
+<body>
+        <h1></h1>
+        <form class="form-horizontal" name="form1" method="POST" >
+            
+        <div class="table-responsive" style="margin-bottom: 6%">
+                <table class="table  thead-dark">
+                    <tr>
+                        <td>Photo</td>
+                        <td>Name</td>
+                        <td>Catagory</td>
+                        <td>Details</td>
+                        <td>Price</td>
+                        <td>Availability</td>
+                        <td> Update </td>
+                        <td> Change Photo </td>
+                        <td> Delete </td>
+                    </tr>
+                    <% if (rows.length > 0) {%>
+                        <div class="row">
+                            <% rows.forEach((row, index) => { %>
+                                <tr>
+                                <td>
+                                    <img src="/assets/img/<%= row.Image %>" alt="" class="rounded-circle" style="height:37px; width: 37px">
+                                </td>
+                                <td>
+                                    <input type="text" name="name" value="<%= row.Food_Name %>">
+                                </td>
+                                <td>
+                                    <select name="catagory">
+                                    <option value="<%= row.Catagory_Name %>"><%= row.Catagory_Name %></option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Others">Fastfood</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <textarea type="text" name="details" ><%= row.Details %></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="price" value="<%= row.Price %>">
+                                </td>
+                                <td>
+                                    <select id="" name="availability" class="form-control" required>
+                                            <option value="<%= row.Availability %>" ><%= row.Availability %></option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                </td>
+                                <td>
+                                        <a href="#"target="_blank" rel="noopener" class="btn btn-sm btn-success"></a>
+                                </td>
+                                <td>
+                                        <button  class="btn btn-primary"><input formaction="/admin/update_items/<%= row.Food_ID%>" type="submit">Update</button>
+                                </td>
+                                <td>
+                                        <button type="" class="btn btn-primary">Delete</button>
+                                </td>
+                                </tr>
+                                
+                                <% }); }%>
+                        
+                </table>
+            </div>
+        </form>  
+    </body>
+
+<%- include admin_foot %>

@@ -1,0 +1,117 @@
+
+<%- include header %>
+<div class="container">   
+<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                   
+    <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Add details</div>
+                <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>-->
+            </div>    
+
+            <div style="padding-top:30px" class="panel-body" >
+                <% if (message.length > 0) { %>
+                  <div class="alert alert-danger col-sm-12"><%= message %></div>
+                <% } %>
+                   
+                <form id="loginform" class="form-horizontal" role="form" method="post" action="/adding_details">
+                           
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="" type="text" class="form-control" name="name" value="" placeholder="name" required>                                       
+                    </div>
+                    
+                       
+                    <div class="md-form">
+                            <label> Who you are?</label>
+                            <div class="md-form mb-0">
+                                  <select class="form-control" name="profession" id="" required>
+                                    <option value="Student">Student</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Employee">Employee</option>
+                                  </select>
+                                </div>
+                    </div>
+                    <div class="md-form">
+                        <label> Select your department</label>
+                        <div class="md-form mb-0">
+                            <select id="" class="form-control" name="department" required>
+                                <option selected>Department Name</option>
+                                <option value="Computer Science & Engineering">Computer
+                                    Science & Engineering</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Geology and Mining">Geology and Mining</option>
+                                <option value="Soil & Environmental Science">Soil &
+                                    Environmental Science</option>
+                                <option value="Botany">Botany</option>
+                                <option value="Coastal Studies & Disaster Management">Coastal
+                                    Studies & Disaster Management</option>
+                                <option value="Biochemistry & Biotechnology">Biochemistry
+                                    & Biotechnology</option>
+                                <option value="Management Studies">Management Studies</option>
+                                <option value="Accounting & Information System">Accounting
+                                    & Information System</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Finance & Banking">Finance & Banking</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Political Science">Political Science</option>
+                                <option value="Sociology">Sociology</option>
+                                <option value="Public Administration">Public
+                                    Administration</option>
+                                <option value="Bangla">Bangla</option>
+                                <option value="English">English</option>
+                                <option value="Philosophy">Philosophy</option>
+                                <option value="Mass Communication & Journalism">Mass
+                                    Communication & Journalism</option>
+                                <option value="History & Civilization">History &
+                                    Civilization</option>
+                                <option value="Law">Law</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <label> Your working location in the campus</label> <br>
+                        <input id="login-password" type="text" class="form-control" name="address" placeholder="Address" >
+                    </div>
+                    <div class="md-form">
+                            <label>Floor</label>
+                            <div class="md-form mb-0">
+                                  <select class="form-control" name="floor" id="" required>
+                                    <option value="ground">Ground floor</option>
+                                    <option value="1st">1st floor</option>
+                                    <option value="2nd">2nd floor</option>
+                                    <option value="3rd">3rd floor</option>
+                                    <option value="4th">4th floor</option>
+                                    <option value="5th">5th floor</option>
+                                    <option value="6th">6th floor</option>
+                                    <option value="7th">7th floor</option>
+                                    
+                                  </select>
+                                </div>
+                    </div>  
+
+                        <div style="margin-top:10px" class="form-group">
+                            <!-- Button -->
+
+                            <div class="col-sm-12 controls">
+                              <button id="btn-login" type="submit" class="btn btn-success">Submit </button>
+                             
+
+                            </div>
+                            
+                        </div>
+  
+                    </form>    
+
+
+
+                </div>                    
+            </div> 
+</div>
+
+</div>
+</body>
+</html>
