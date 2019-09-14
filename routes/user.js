@@ -276,5 +276,5 @@ exports.reset=function(req,res){
 };
 //------------------------Cart-----------------
 exports.call_cart = function(req,res){
-   res.render('user_cart.ejs');
+   res.render('cart_list.html');
 }

@@ -1,58 +1,23 @@
-
 <%- include partials/head.ejs %>
-<script>
-    var cart = []
-    function addToCart(id, title, price , quantity) {
-        cart.push({
-            id: id, 
-            title: title,
-            price: price,
-            quantity: 1
-        })
-        localStorage.cart = JSON.stringify(cart)
-    }
-    function saveCart() {
-        if ( window.localStorage)
-        {
-            localStorage.cart = JSON.stringify(cart);
+<style>
+        .badge-notify{
+            background:red;
+            position:relative;
+            top: -20px;
+            right: 10px;
         }
-    }
-    function showCart() {
-            if (cart.length == 0) {
-                $("#cart").css("visibility", "hidden");
-                return;
-            }
-
-            $("#cart").css("visibility", "visible");
-            $("#cartBody").empty();
-            for (var i in cart) {
-                var item = cart[i];
-                var row = "<tr><td>" + item.Product + "</td><td>" +
-                             item.Price + "</td><td>" + item.Qty + "</td><td>"
-                             + item.Qty * item.Price + "</td><td>"
-                             + "<button onclick='deleteItem(" + i + ")'>Delete</button></td></tr>";
-                $("#cartBody").append(row);
-            }
+        .my-cart-icon-affix {
+            position: fixed;
+            z-index: 999;
         }
-
-    function showCart(){
-        JSON.parse(localStorage.cart);
-    }
-</script>
-
-
+        </style>
 
 <div class="container">
-        <div class="card-body bg-light" >
-            <tbody id="cartBody">
-
-            </tbody>
-
+        <div class="card" >
+            
    <% if (items.length > 0) {%>
   <div class="row">
-      <% items.forEach((item, index) => { %>
-
-
+        <% for(let item of items) { %>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
           <div class="tile">
               <div class="wrapper">
@@ -61,10 +26,7 @@
                   <div class="banner-img img">
                       <img src="/assets/img/<%= item.Image %>" alt="" >
                   </div>
-
-
                   <div class="dates">
-
                       <div>
                           <strong>Details:</strong> <%= item.Details %>
                       </div>
@@ -75,19 +37,64 @@
                           <strong>Available for <%= item.Catagory_Name %></strong> <%= item.Availability %>
                       </div>
                   </div>
-
-                     <a id="btnAdd" onclick="addToCart('<%=item.Food_ID%>', '<%= item.Food_Name %>', '<%= item.Price %>', '1')" class="btn btn-primary">Order Now</a>
+                  <button class="btn btn-danger my-cart-btn<%=item.Food_ID%>" data-id="<%=item.Food_ID%>" data-name="<%= item.Food_Name %>" data-summary="summary 1" data-price="<%= item.Price %>" data-quantity="1" data-image="/assets/img/<%= item.Image %>">Order</button>
+                    <!-- <a onclick="addToCart('<%=item.Food_ID%>', '<%= item.Food_Name %>', '<%= item.Price %>', '1')" class="btn btn-primary">Order Now</a> -->
                   <br><br>
               </div>
           </div> 
       </div>
-      
-      <% }); %>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="assets/jquery.mycart.js"></script>
+<script type="text/javascript">
+;(function($){
+
+  var goToCartIcon = function($addTocartBtn){
+    var $cartIcon = $(".my-cart-icon");
+    var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+    $addTocartBtn.prepend($image);
+    var position = $cartIcon.position();
+    $image.animate({
+      top: position.top,
+      left: position.left
+    }, 500 , "linear", function() {
+      $image.remove();
+    });
+  }
+
+  $('.my-cart-btn<%=item.Food_ID%>').myCart({
+    classCartIcon: 'my-cart-icon',
+    classCartBadge: 'my-cart-badge',
+    classProductQuantity: 'my-product-quantity',
+    classProductRemove: 'my-product-remove',
+    classCheckoutCart: 'my-cart-checkout',
+    affixCartIcon: true,
+    showCheckoutModal: true,
+    
+    clickOnAddToCart: function($addTocart){
+      goToCartIcon($addTocart);
+    },
+    clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+      console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+    },
+    checkoutCart: function(products, totalPrice, totalQuantity) {
+      console.log("checking out", products, totalPrice, totalQuantity);
+    }/*,
+    getDiscountPrice: function(products, totalPrice, totalQuantity) {
+      console.log("calculating discount", products, totalPrice, totalQuantity);
+      return totalPrice * 1;
+    }*/
+  });
+
+})(jQuery);
+</script>  
+      <% }; %>
   </div>
 <% } else { %>
   <p class="text-center">No items found.</p>
 <% } %>
  </div>
+ 
 </div>
  <br><br><br><br><br><br>
  <%- include partials/foot %>

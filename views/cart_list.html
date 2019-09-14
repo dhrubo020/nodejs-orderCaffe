@@ -1,0 +1,114 @@
+<%- include partials/head.ejs %>
+<script>
+    function clearAll(){
+        window.localStorage.clear();
+        showCart();
+    }
+   /* function showCart() {
+        cart = JSON.parse(localStorage.cart)
+        var cartList = document.createElement("table")
+        for(var i = 0; i < cart.length; i++) {
+            var cartItem = document.createElement("tr")
+            cartItem.innerHTML = `
+                <td>${cart[i].id}</td><td>${cart[i].title}</td><td>${cart[i].quantity}</td>
+            `
+            cartList.appendChild(cartItem)
+        }
+        document.querySelector(`#cartBody`).innerHTML = ``;
+        document.querySelector(`#cartBody`).appendChild(cartList)
+    }*/
+
+    function deleteItem(index){
+            cart.splice(index,1); // delete item at index
+            showCart();
+            saveCart();
+        }
+
+        function saveCart() {
+            if ( window.localStorage)
+            {
+                localStorage.cart = JSON.stringify(cart);
+            }
+        }
+
+        function showCart(req,res) {
+            if (cart.length == 0) {
+                $("#cart").css("visibility", "hidden");
+                return;
+            }
+            cart = JSON.parse(localStorage.cart)
+            
+            $("#cart").css("visibility", "visible");
+            //$("#cartBody").empty();
+            for (var i in cart) {
+                var item = cart[i];
+                console.log(item);
+                var row = "<tr><td>" + item.title + "</td><td>" +
+                             item.price + "</td><td>"+ "<input onclick='quantity()' value='item.quantity' type='number'></td><td>"
+                             + item.quantity * item.price + "</td><td>"
+                             + "<button onclick='deleteItem("+i+")'>Delete</button></td></tr>";
+                $("#cartBody").append(row);
+            }
+        }
+        var x = document.createElement("INPUT");
+        function quantity() {
+        x.setAttribute("type", "number");
+        x.setAttribute("value", "1");
+        document.Qty.appendChild(x);
+        }
+        function incrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<10){
+                value++;
+                    document.getElementById('number').value = value;
+            }
+        }
+        function decrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value>1){
+                value--;
+                    document.getElementById('number').value = value;
+            }
+        }
+</script>
+    
+ <button onclick="clearAll()">Clear all</button>
+<body>
+        <div id="Qty">
+        <input type="button" onclick="decrementValue()" value="-" />
+        <input type="text" name="quantity" value="1" maxlength="2" max="10" size="1" id="Qnumber" />
+        <input type="button" onclick="incrementValue()" value="+" />
+        </div>
+    <table id="cart" border="1" style="visibility:hidden; width:100%">
+         <thead>
+              <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th></th>
+             </tr>
+         </thead>
+         <tbody id="cartBody">
+                <script>
+                console.log(showCart());
+                </script>
+         </tbody>
+    </table>
+
+    <script>
+            for (var i in cart) {
+               var input = cart[i].title
+               $("#cartForm").append( input);
+            }
+            </script>
+    <form action="" id="cartForm">
+
+    </form>
+     
+ <br><br><br><br><br><br>
+ <%- include partials/foot %>

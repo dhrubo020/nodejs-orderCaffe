@@ -27,6 +27,8 @@ global.db = connection;
 app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 //-----use--------
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
 app.use(fileUpload()); // configure fileupload
@@ -48,7 +50,8 @@ app.use(function(req, res, next){
   next();
 });
  
-
+var $, jQuery;
+$ = jQuery = require('jquery');
 
 // development only
 //call for main index page

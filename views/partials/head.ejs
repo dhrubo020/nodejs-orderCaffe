@@ -3,9 +3,11 @@
 <head>
     <!-- Required meta tags for Bootstrap -->
     <meta charset="utf-8">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -14,8 +16,24 @@
     <!-- MC History styles -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/sidenav.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+        <script src="assets/jquery.min.js" type="text/javascript"></script>
+        <script type='text/javascript' src="assets/jquery.mycart.js"></script>
     <title>OrderCaffe</title>
     <link rel="icon" type="image/ico" href="/icon.png" />
+    <style>
+    .badge-notify{
+        background:red;
+        position:relative;
+        top: -20px;
+        right: 10px;
+    }
+    .my-cart-icon-affix {
+        position: fixed;
+        z-index: 999;
+    }
+    </style>
+
 </head>
 
 <body>
@@ -39,8 +57,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link" href="/cart">
-                                            &nbsp;<i class="fas fa-home"></i>&nbsp; Cart
+                                        <a class="nav-link" href="#">
+                                            <span class="glyphicon glyphicon-shopping-cart my-cart-icon"> Cart
+                                                    <span class="badge badge-notify my-cart-badge"></span></span>
                                         </a>
                                     </li>
                                 
@@ -95,6 +114,8 @@
                 
                     <nav class="sidenav"></nav>
                 </header>
+
+                
         <%} else {%>
             <header style="margin-bottom: 100px;">
                     <nav class="navbar navbar-expand-md fixed-top font-weight-bold">
