@@ -1,0 +1,36 @@
+<%- include admin_header %>
+<div class="container">
+        <% if (items.length > 0) {%>
+            <div class="">
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                                <td>Date/Time</td>
+                                <td>Customer Name</td>
+                                <td>Phone</td>
+                                <td>Delivery Address</td>
+                                <td>Order Details</td>
+                                <td>Total Amount</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                <% for(var i = 0; i < items.length; i++) { %>
+                            <tr>
+                                    <td> <%= items[i].Date_Time %> </td>
+                                    <td> <%= items[i].Customer_Name %> </td>
+                                    <td> <%= items[i].Phone %> </td>
+                                    <td> <%= items[i].Delivery_Address %> </td>
+                                <td> <%= items[i].Order_Details %> </td>
+                                <td> <%= items[i].Total_Amount %> </td>
+                            </tr>
+                            <% }; %>
+                        </tbody>
+        
+                    </table>
+                    
+            </div>
+          <% } else { %>
+            <p class="text-center">No items found.</p>
+          <% } %>
+        </div>
+<%- include admin_foot %>

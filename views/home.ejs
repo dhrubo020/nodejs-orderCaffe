@@ -1,18 +1,15 @@
 <%- include partials/head.ejs %>
-<style>
-        .badge-notify{
-            background:red;
-            position:relative;
-            top: -20px;
-            right: 10px;
-        }
-        .my-cart-icon-affix {
-            position: fixed;
-            z-index: 999;
-        }
-        </style>
+
 
 <div class="container">
+  <div>
+      <a href="#" style="float: right;">
+          <span class="glyphicon glyphicon-shopping-cart my-cart-icon"> Cart
+                  <span class="badge badge-notify my-cart-badge"></span>
+              </span>
+      </a>
+    <hr>
+  </div>
         <div class="card" >
             
    <% if (items.length > 0) {%>
@@ -20,7 +17,7 @@
         <% for(let item of items) { %>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
           <div class="tile">
-              <div class="wrapper">
+              <div class="">
                   <div class="cardtop" id="name"><%= item.Food_Name %></div>
                   
                   <div class="banner-img img">
@@ -37,15 +34,20 @@
                           <strong>Available for <%= item.Catagory_Name %></strong> <%= item.Availability %>
                       </div>
                   </div>
-                  <button class="btn btn-danger my-cart-btn<%=item.Food_ID%>" data-id="<%=item.Food_ID%>" data-name="<%= item.Food_Name %>" data-summary="summary 1" data-price="<%= item.Price %>" data-quantity="1" data-image="/assets/img/<%= item.Image %>">Order</button>
+                  <button class="btn btn-danger my-cart-btn<%=item.Food_ID%>" data-id="<%=item.Food_ID%>" 
+                    data-name="<%= item.Food_Name %>" data-summary="summary 1" data-price="<%= item.Price %>" 
+                    data-quantity="1" data-image="/assets/img/<%= item.Image %>">Order</button>
                     <!-- <a onclick="addToCart('<%=item.Food_ID%>', '<%= item.Food_Name %>', '<%= item.Price %>', '1')" class="btn btn-primary">Order Now</a> -->
                   <br><br>
               </div>
           </div> 
       </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type='text/javascript' src="assets/jquery.mycart.js"></script>
+
 <script type="text/javascript">
 ;(function($){
 
@@ -77,8 +79,9 @@
     clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
       console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
     },
-    checkoutCart: function(products, totalPrice, totalQuantity) {
+    checkoutCart: function(products, totalPrice, totalQuantity, array) {
       console.log("checking out", products, totalPrice, totalQuantity);
+      //console.log('checkout clicked home');
     }/*,
     getDiscountPrice: function(products, totalPrice, totalQuantity) {
       console.log("calculating discount", products, totalPrice, totalQuantity);
@@ -90,11 +93,13 @@
 </script>  
       <% }; %>
   </div>
+ 
 <% } else { %>
   <p class="text-center">No items found.</p>
 <% } %>
  </div>
  
 </div>
- <br><br><br><br><br><br>
- <%- include partials/foot %>
+<br><br><br><br>
+<%- include partials/foot %>
+

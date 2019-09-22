@@ -1,0 +1,28 @@
+<%- include partials/head %>
+<div class="container">
+<% if (items.length > 0) {%>
+    <div class="">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <td>Order List</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+        <% for(var i = 0; i < items.length; i++) { %>
+                    <tr>
+                        <td> <%= items[i].Order_Details %> </td>
+                        <td> <%= items[i].Date_Time %></td>
+                    </tr>
+                    <% }; %>
+                </tbody>
+
+            </table>
+            
+    </div>
+  <% } else { %>
+    <p class="text-center">No items found.</p>
+  <% } %>
+</div>
+<%- include partials/foot %>

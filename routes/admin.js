@@ -207,3 +207,22 @@ exports.update_items = function(req,res){
         res.render("./admin/admin_login.ejs",{ message: ''});
     }
 }
+//--------------Order list-------------------
+exports.order_list = function(req, res){
+    if(req.session.ssadmin!=null){
+  
+        var sql = "SELECT * FROM `order_list` ORDER BY Order_ID DESC";
+        var query = db.query(sql, function(err , result){
+           if(result.length>=0){
+              res.render('./admin/admin_order_list.ejs', {
+                 message: "Recent ordered items"
+                 ,items: result
+             });
+           }else{
+              res.render('./admin/admin_order_list.ejs', {
+                 message: "No items found"
+             });
+           }
+        });
+     }
+}

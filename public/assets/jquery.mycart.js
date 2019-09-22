@@ -13,7 +13,7 @@
 
     var _options = null;
     var DEFAULT_OPTIONS = {
-      currencySymbol: '$',
+      currencySymbol: 'Tk',
       classCartIcon: 'my-cart-icon',
       classCartBadge: 'my-cart-badge',
       classProductQuantity: 'my-product-quantity',
@@ -26,7 +26,7 @@
       clickOnAddToCart: function ($addTocart) {},
       afterAddOnCart: function (products, totalPrice, totalQuantity) {},
       clickOnCartIcon: function ($cartIcon, products, totalPrice, totalQuantity) {},
-      checkoutCart: function (products, totalPrice, totalQuantity) {
+      checkoutCart: function (products, totalPrice, totalQuantity, array) {
         return false;
       },
       getDiscountPrice: function (products, totalPrice, totalQuantity) {
@@ -243,11 +243,11 @@
         var total = this.quantity * this.price;
         $cartTable.append(
           '<tr title="' + this.summary + '" data-id="' + this.id + '" data-price="' + this.price + '">' +
-          '<td class="text-center" style="width: 30px;"><img width="30px" height="30px" src="' + this.image + '"/></td>' +
+          '<td class="text-center" style="width: 30px;"><img width="30px" height="30px" class="rounded-circle" src="' + this.image + '"/></td>' +
           '<td>' + this.name + '</td>' +
-          '<td title="Unit Price" class="text-right">' + MathHelper.getRoundedNumber(this.price) + ' Tk </td>' +
+          '<td title="Unit Price" class="text-right">'  + MathHelper.getRoundedNumber(this.price) + options.currencySymbol + '</td>' +
           '<td title="Quantity"><input type="number" min="1" style="width: 70px;" class="' + classProductQuantity + '" value="' + this.quantity + '"/></td>' +
-          '<td title="Total" class="text-right ' + classProductTotal + '">' + MathHelper.getRoundedNumber(total) + ' Tk </td>' +
+          '<td title="Total" class="text-right ' + classProductTotal + '">' + MathHelper.getRoundedNumber(total) + options.currencySymbol + '</td>' +
           '<td title="Remove from Cart" class="text-center" style="width: 30px;"><a href="javascript:void(0);" class="btn btn-xs btn-danger ' + classProductRemove + '">X</a></td>' +
           '</tr>'
         );
@@ -293,7 +293,7 @@
       });
     };
     var showGrandTotal = function () {
-      $("#" + idGrandTotal).text(MathHelper.getRoundedNumber(ProductManager.getTotalPrice())+ ' Tk');
+      $("#" + idGrandTotal).text(MathHelper.getRoundedNumber(ProductManager.getTotalPrice())+ options.currencySymbol);
     };
     var showDiscountPrice = function () {
       $("#" + idDiscountPrice).text(options.currencySymbol + MathHelper.getRoundedNumber(options.getDiscountPrice(ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity())));
@@ -353,9 +353,45 @@
       updateCart();
       var isCheckedOut = options.checkoutCart(ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity());
       if (isCheckedOut !== false) {
-        ProductManager.clearProduct();
-        $cartBadge.text(ProductManager.getTotalQuantity());
-        $("#" + idCartModal).modal("hide");
+
+
+        var product =ProductManager.getAllProducts();
+        var price=  ProductManager.getTotalPrice();
+        var qty =  ProductManager.getTotalQuantity();
+        
+        var array = [];
+        var products =  ProductManager.getAllProducts();
+        $.each(products, function (){
+          //console.log(this.name + " "+ this.quantity+" "+this.price+" "+this.quantity*this.price);
+          array.push({
+            "id" : this.id
+            ,"name" : this.name
+            ,"unit_price" : this.price
+            ,"quantity" : this.quantity
+            ,"total_price" : this.quantity*this.price
+          });
+
+        });
+        array.push({
+          "grand_total_price" : price
+        })
+        //console.log('Total price '+price);
+        //$.post("/orderedList",JSON.stringify(array));
+        if(price>=4){
+        $.ajax({
+          url: '/orderedList', 
+          type: 'POST', 
+          contentType: 'application/json', 
+          data: JSON.stringify(array)
+        });
+
+                      ProductManager.clearProduct();
+                      $cartBadge.text(ProductManager.getTotalQuantity());
+                      $("#" + idCartModal).modal("hide");
+        window.location.href="/getOrderedList";
+      }else{
+        console.log("low price");
+      }
       }
     });
 

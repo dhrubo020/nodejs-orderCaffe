@@ -50,9 +50,6 @@ app.use(function(req, res, next){
   next();
 });
  
-var $, jQuery;
-$ = jQuery = require('jquery');
-
 // development only
 //call for main index page
 app.get('/', user.login);
@@ -75,6 +72,12 @@ app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
 
+app.get('/getOrderedList', user.get_order_list);
+app.post('/orderedList', user.ordered_list);
+
+app.post('/confirmOrder', user.confirm_order);
+
+app.get('/showCart', user.show_cart_list);
 //---------------user end----------------------------
 
 //-----------------admin--------------------
@@ -90,6 +93,6 @@ app.get('/admin/edit_items/:id',admin.edit_items);
 app.post('/admin/update_items/:id',admin.update_items);
 app.post('/admin/change_photo/:id', admin.update_photo);
 
-
+app.get('/orders', admin.order_list);
 //------------------admin end---------------------
 app.listen(8080)
